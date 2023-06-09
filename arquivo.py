@@ -1,3 +1,6 @@
+import sys
+import datetime
+
 class Arquivo:
 
     def __init__(self, nome: str, tipo: str, descricao: str, conteudo: str, diretorio: Diretorio):
