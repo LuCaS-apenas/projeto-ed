@@ -1,3 +1,6 @@
+import cryptocode
+from Lista import *
+
 diretorio = Diretorio('Projeto')
 chave = 'abc'
 escolha_uma_senha = input('Senha: ')
