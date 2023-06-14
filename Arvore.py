@@ -55,8 +55,8 @@ class ArvoreBinaria:
       self.pre_ordem(no.direita)
 
   def imprimir(self, no_inicial=None):
-    # se o nó inicial for None, vai imprimir todos os nós da árvore recursivamente
-    # algum ponto do nó for passado como parâmetro, a impressão da árvore vai partir desse pronto
+    # se o nó inicial for None, vai imprimir todos os nós da árvore recursivamente.
+    # caso algum nó seja passado como parâmetro, a impressão da árvore vai partir desse ponto da árvore.
     if no_inicial is None:
       no_inicial = self.raiz
     no_inicial.imprimir()
