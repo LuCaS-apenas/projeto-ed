@@ -11,6 +11,56 @@ class Arquivo:
         self.conteudo = conteudo
         self.criacao = datetime.datetime.now()
         self.diretorio = diretorio.nome
+       
+    
+    @property
+    def nome(self):
+        return self.__nome
+
+    @nome.setter
+    def nome(self, nome):
+        self.__nome = nome
+
+    @property
+    def tipo(self):
+        return self.__tipo
+    
+    @tipo.setter
+    def tipo(self, tipo):
+        self.__tipo == tipo
+
+    @property
+    def descricao(self):
+        return self.__descricao
+    
+    @descricao.setter
+    def descricao(self, descricao):
+        self.__descricao = descricao
+
+    @property 
+    def tamanho(self):
+        return self.__tamanho
+    
+    @tamanho.setter
+    def tamanho(self, tamanho):
+        self.__tamanho = tamanho
+
+    @property
+    def conteudo(self):
+        return self.__conteudo
+
+    @conteudo.setter
+    def conteudo(self, conteudo):
+        self.__conteudo = conteudo
+
+    
+    @property 
+    def diretorio(self):
+        return self.__diretorio
+
+    @diretorio.setter
+    def diretorio(self, diretorio):
+        self.__diretorio = diretorio
 
     def criar_arquivo(self):
         with open ( f'{self.nome}.txt', 'a' ) as arquivo:
