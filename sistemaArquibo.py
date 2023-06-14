@@ -3,6 +3,16 @@ class SistemaArquivos:
     def __init__(self, chave: ChaveCriptografia):
         self.chave_criptografia = chave
 
+        
+    @property 
+    def chave_criptografia(self):
+        return self.__chave_criptografia
+    
+    @chave_criptografia.setter
+    def chave_criptografia(self, chave):
+        self.__chave_criptografia = chave
+        
+        
     # função para gerar uma senha para acessar o arquivo.
     def gerar_chave_criptografia(self):
         caracteres = ''
