@@ -14,8 +14,8 @@ class SistemaArquivos:
     def revogar_chave_criptografia(self):
         pass
 
-    def listar_diretorios(self):
-        pass
+    def listar_diretorios(self, no = None):
+        return ArvoreBinaria.imprimir( no )
 
     def gravar_arquivo_cifrado(self, arquivo: Arquivo):
         pass
