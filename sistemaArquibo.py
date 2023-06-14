@@ -24,7 +24,13 @@ class SistemaArquivos:
         pass
 
     def buscas_arquivo(self, palavra_chave: str, lista_arquivo):
-        pass
+        #palavra_chave  == nome do arquivo
+        for arq in range(len(lista_arquivo)):
+            if lista_arquivo[arq] == palavra_chave:
+                return arq
+            if lista_arquivo[arq] > palavra_chave:
+                return "Não encontrado"
+        return -1
 
     def decifrar_arquivo(self, diretorio: str, nome: str):
         pass
