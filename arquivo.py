@@ -27,7 +27,7 @@ class Arquivo:
     
     @tipo.setter
     def tipo(self, tipo):
-        self.__tipo == tipo
+        self.__tipo = tipo
 
     @property
     def descricao(self):
