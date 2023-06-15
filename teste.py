@@ -4,6 +4,7 @@ import cryptocode
 import sys
 from Lista import *
 from Arvore import *
+
 class Diretorio:
 
     def __init__(self, nome: str):
@@ -127,8 +128,9 @@ no2diretorio.direita = No(diretorio3)
 diretorio_raiz.esquerda = no2diretorio
 no3diretorio = No(diretorio4)
 no3diretorio.direita = No(diretorio5)
-diretorio_raiz.direita = No(diretorio6)
+no3diretorio.esquerda = No(diretorio6)
 diretorio_raiz.direita = no3diretorio
+
 arvore  = ArvoreBinaria(diretorio_raiz)
 arvore.pre_ordem()
 
@@ -142,6 +144,5 @@ arq1 = Arquivo('lucas','txt','senhas',senha_criptografada,diretorio2)
 print(arquivo)
 print('Nome do diretorio do arquivo = ',arquivo.diretorio)
 print(arq1)
-
 
 
