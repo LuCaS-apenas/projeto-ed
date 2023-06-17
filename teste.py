@@ -133,9 +133,6 @@ class SistemaDeArquivos:
         if no.direita:
           self.pre_ordem(no.direita)
 
-    def imprimir(self):
-        self.raiz.imprimir()
-
     def inserir(self, carga, raiz=RAIZ):
         if raiz == RAIZ:
           raiz = self.raiz
@@ -159,7 +156,12 @@ class SistemaDeArquivos:
 
     def listar_diretorios(self, diretorio: Diretorio = None):
 
-        self.raiz.imprimir(diretorio)
+        # se o nó inicial for None, vai imprimir todos os nós da árvore recursivamente.
+        # caso algum nó seja passado como parâmetro, a impressão da árvore vai partir desse ponto da árvore.
+
+        if diretorio is None:
+            diretorio = self.raiz # diretorio vai ser o ponto inicial da impressão da árvore, no caso vai imprimir tudo a partir do novo nó, cada nó é um diretorio diferente.
+        diretorio.imprimir () # o método de impressão da árvore na classe No, foi modificado para imprimir a lista de arquivo presente em cada nó.
 
 
 
@@ -264,6 +266,10 @@ print('--------------------------------------------------------')
 # o método de listar em cada nó, assim imprimindo todos os arquivos contidos neles
 no2diretorio.adicionar_arquivo(a1)
 no2diretorio.esquerda.adicionar_arquivo(a2)
-no2diretorio.direita.adicionar_arquivo(a3)
+no2diretorio.esquerda.adicionar_arquivo(a3)
 no2diretorio.direita.adicionar_arquivo(a4)
-a.listar_diretorios()
+# listando a partir de um diretorio específico
+a.listar_diretorios(no2diretorio.direita)
+print('-----------------------------------------')
+# lista tudo é só fornecer o nó da árvore que faz referência o diretorio raiz
+a.listar_diretorios(diretorio_raiz)
