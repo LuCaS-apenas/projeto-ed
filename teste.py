@@ -10,7 +10,6 @@ class Diretorio:
     def __init__(self, nome: str):
         self.nome = nome
 
-
     def __str__(self):
         return f'{self.nome}'
 
@@ -65,11 +64,15 @@ class No:
     def adicionar_arquivo(self, arquivo):
         self.lista_arquivos.inserir_no_inicio(arquivo)
 
-    def imprimir(self, pasta: No = None , indent = 0):
+    def imprimir(self, indent = 0):
 
-        print(" " * indent + str(self.carga))
+        print(" - " * indent + f"{self.carga}")
+
         # vai imprimir a lista de arquivos em cada nó que são pastas ou diretorios
-        self.lista_arquivos.imprime_lista()
+        # quando o chamar o método de imprimir os nós, que no projeto vai ser diretórios
+        # toda vez que a informação de um nó for impresso vai ser listado os arquivos presentes neles.
+        self.lista_arquivos.imprime_lista() # modificação
+
         if self.esquerda:
             self.esquerda.imprimir(indent + 2)
         if self.direita:
@@ -202,7 +205,7 @@ senha_criptografada = cryptocode.encrypt(conteudo_do_arquivo, b.chave)
 # criar_arquivo(a)
 print('--------------------------DIRETORIOS------------------------------')
 
-diretorio = Diretorio('Diretorio Principal')
+diretorio = Diretorio('Diretorio Home')
 subdiretorio1 = Diretorio('Projeto')
 subdiretorio2 = Diretorio('Mateus')
 subdiretorio3 = Diretorio('Lucas')
