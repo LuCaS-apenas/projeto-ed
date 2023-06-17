@@ -9,19 +9,7 @@ class Diretorio:
 
     def __init__(self, nome: str):
         self.nome = nome
-        # self.lista_arquivos = ListaEncadeada()
-        self.diretorios = ListaEncadeada()
 
-    # def adicionar_arquivo(self, arquivo):
-    #     self.lista_arquivos.inserir_no_inicio ( arquivo )
-
-    def adicionar_diretorio(self, diretorio):
-        self.diretorios.inserir_no_inicio(diretorio)
-
-    def listar_tudo(self):
-        print(f"--- Diretório: {self.nome} ---")
-        self.lista_arquivos.imprime_lista()
-        print()
 
     def __str__(self):
         return f'{self.nome}'
@@ -86,10 +74,6 @@ class No:
             self.esquerda.imprimir(indent + 2)
         if self.direita:
             self.direita.imprimir(indent + 2)
-
-
-
-
 
     def __str__(self):
         return str(self.carga)
@@ -268,6 +252,8 @@ no2diretorio.adicionar_arquivo(a1)
 no2diretorio.esquerda.adicionar_arquivo(a2)
 no2diretorio.esquerda.adicionar_arquivo(a3)
 no2diretorio.direita.adicionar_arquivo(a4)
+#---------------------------------------------------------#
+# teste listagem de diretorios
 # listando a partir de um diretorio específico
 a.listar_diretorios(no2diretorio.direita)
 print('-----------------------------------------')
