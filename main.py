@@ -1,7 +1,7 @@
 from Lista import *
 from ChaveCriptografia import *
-from diretorio import *
-from SistemaArquivo import *
+from Diretorio import *
+from SistemaDeArquivo import *
 import cryptocode
 import sys
 
