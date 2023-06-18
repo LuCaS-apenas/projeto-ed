@@ -1,6 +1,6 @@
-class No:
+class No_da_lista:
 
-    def __init__(self, carga: 'No' = None, prox: 'No' = None):
+    def __init__(self, carga: 'No_da_lista' = None, prox: 'No_da_lista' = None):
         self.carga = carga
         self.proximo = prox
 
@@ -10,11 +10,11 @@ class No:
 class ListaEncadeada:
 
     def __init__(self):
-        self.cabeca:'No' = None
-        self.cauda:'No' = None
+        self.cabeca:'No_da_lista' = None
+        self.cauda:'No_da_lista' = None
 
     def inserir_no_inicio(self, carga):
-        valor: No = No(carga)
+        valor: No_da_lista = No_da_lista(carga)
         if self.cabeca is None:
             self.cabeca = valor
             self.cauda = valor
@@ -23,7 +23,7 @@ class ListaEncadeada:
             self.cabeca = valor
 
     def inserir_no_final(self, valor):
-        value: No = No(valor)
+        value: No_da_lista = No_da_lista(valor)
         if self.cabeca is None:
             self.cauda = value
             self.cabeca = value
@@ -69,12 +69,22 @@ class ListaEncadeada:
 
     def imprime_lista(self):
         if self.cabeca is None:
-            print ( "Lista Vazia" )
+            print ( "  " )
             return
 
-        atual: 'No' = self.cabeca
+        atual: 'No_da_lista' = self.cabeca
 # Vai printar a carga (valor da lista)
 # até quando o valor atual for None.
         while atual is not None:
             print(f'{atual.carga}' +  ' ')
             atual = atual.proximo
+
+    def tamanho_lista(self):
+        tamanho = 0
+        atual = self.cabeca
+        while atual is not None:
+            tamanho += 1
+            atual = atual.proximo
+        print ( f"Tamanho da lista: {tamanho}" )
+
+
