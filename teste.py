@@ -1,5 +1,4 @@
 import datetime
-import random
 import cryptocode
 import sys
 from Lista import *
@@ -74,9 +73,11 @@ class No:
     # falta verificar!
 
 
+
     def imprimir(self, indent = 0):
 
         print(" - " * indent + f"{self.carga}")
+
 
         # vai imprimir a lista de arquivos em cada nó que são pastas ou diretorios
         # quando o chamar o método de imprimir os nós, que no projeto vai ser diretórios
@@ -161,21 +162,42 @@ class SistemaDeArquivos:
         diretorio.imprimir () # o método de impressão da árvore na classe No, foi modificado para imprimir a lista de arquivo presente em cada nó.
 
 
+    def buscar_diretorio(self, nome: str, diretorio: 'No' = None):
 
+        if diretorio is None:
+            return diretorio
+        # Se o nome fornecido for igual ao algum diretório, que no caso é o nome do nó da árvore binária.
+        # Ira retornar o nó atual.
+        if nome == diretorio.carga.nome:
+            return diretorio
+
+        # vai verificar se à esquerda da árvore tem elementos.
+        if diretorio.esquerda:
+            # é utilizado uma variável para armazenar o resultado da busca da chamada recursiva do lado esquerdo da árvore onde estão os diretórios.
+            diretorio_encontrado = self.buscar_diretorio ( nome, diretorio.esquerda)
+            # se for encontrado alguma coisa irá ser retornado.
+            return diretorio_encontrado
+
+        if diretorio.direita:
+            diretorio_encontrado = self.buscar_diretorio( nome, diretorio.direita )
+            return diretorio_encontrado
+        return None
+
+    # está gravando no local certo, mas não está funcionando direito a criação de um novo nó(diretorio) caso ele ñ exista.
     def gravar_arquivo_cifrado(self, diretorio: No, arquivo: Arquivo):
-
+        # verificações para validar o tipo dos parâmetros fornecidos
         if not isinstance(diretorio, No):
             raise('Precisa fornecer um No valido!')
 
-        # if not isinstance((arquivo, Arquivo)):
-        #     raise('Precisa fornecer um objeto do tipo arquivo!')
+        if not isinstance(arquivo, Arquivo):
+            raise('Precisa fornecer um objeto do tipo arquivo!')
 
-        # falto só implementar o método buscar arquivo
-        diretorio = self.raiz # buscar_diretorio(diretorio.nome)
-
+        # é feito uma chamada recursiva para buscar o nome do diretorio na árvore de diretórios.
+        diretorio = self.buscar_diretorio(diretorio.carga.nome, diretorio)
+        # Se não for encontrado o diretório na árvore, vai ser criado um diretório e inserido na árvore utilizando o método de inserção da árvore binária.
         if diretorio is None:
             novo_diretorio = No(diretorio)
-            self.inserir(diretorio, self.raiz)
+            self.inserir(novo_diretorio, self.raiz)
             diretorio = novo_diretorio
 
         arquivo.conteudo = cryptocode.encrypt(arquivo.conteudo, arquivo.diretorio)
@@ -267,9 +289,11 @@ print('-----------------------------------------')
 # lista tudo é só fornecer o nó da árvore que faz referência o diretorio raiz
 a.listar_diretorios(diretorio_raiz)
 
-a.gravar_arquivo_cifrado(no2diretorio, a0)
+a.gravar_arquivo_cifrado(no3diretorio.esquerda, a0)
+a.gravar_arquivo_cifrado(diretorio_raiz,a1)
+a.gravar_arquivo_cifrado(no2diretorio.direita, a2)
 
 a.listar_diretorios(diretorio_raiz)
 
-#
-# print(a.buscar_diretorio())
+# passar o nome do diretorio da busca e o local de onde que começar a busca.
+print(a.buscar_diretorio('Mateus',diretorio_raiz))
