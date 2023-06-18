@@ -1,7 +1,8 @@
 import datetime
-from chaveCriptografia import ChaveCriptografia
-from arquivo import *
+from ChaveCriptografia import *
+from Arquivo import *
 import cryptocode
+from Lista import *
 import sys
 
 
