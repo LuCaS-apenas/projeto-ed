@@ -3,7 +3,8 @@ import random
 import cryptocode
 import sys
 from Lista import *
-from Arvore import *
+
+
 
 class DiretorioError(Exception):
     pass
