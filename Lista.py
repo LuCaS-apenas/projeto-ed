@@ -69,7 +69,7 @@ class ListaEncadeada:
 
     def imprime_lista(self):
         if self.cabeca is None:
-            print ( "  " )
+            print ( " vazio ! " )
             return
 
         atual: 'No_da_lista' = self.cabeca
@@ -86,5 +86,4 @@ class ListaEncadeada:
             tamanho += 1
             atual = atual.proximo
         print ( f"Tamanho da lista: {tamanho}" )
-
 
