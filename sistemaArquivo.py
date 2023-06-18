@@ -5,7 +5,15 @@ import cryptocode
 from Lista import *
 import sys
 
+class CaracteresInsuficiente(Exception):
+    pass
 
+class DiretorioError(Exception):
+    pass
+
+class ArquivoError(Exception):
+    pass
+    
 ## Árvore Binária
 class No:
 
