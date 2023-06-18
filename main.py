@@ -2,6 +2,8 @@ from Lista import *
 from ChaveCriptografia import *
 from diretorio import *
 from SistemaArquivo import *
+import cryptocode
+import sys
 
 if __name__ == '__main__':
 
