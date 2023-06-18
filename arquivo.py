@@ -70,10 +70,6 @@ class Arquivo:
     def diretorio(self, diretorio):
         self.__diretorio = diretorio
 
-    def criar_arquivo(self):
-        with open ( f'{self.nome}.txt', 'a' ) as arquivo:
-            arquivo.write (f'senha:{self.conteudo}')
-
     def __str__(self):
         return f'''
         Diretório: {self.diretorio}
