@@ -1,5 +1,6 @@
 import sys
 import datetime
+from Diretorio import *
 
 class Arquivo:
 
@@ -9,10 +10,9 @@ class Arquivo:
         self.descricao = descricao
         self.tamanho = f'{sys.getsizeof ( conteudo )} Bytes'
         self.conteudo = conteudo
-        self.criacao = datetime.datetime.now()
+        self.criacao = datetime.datetime.now ()
         self.diretorio = diretorio.nome
-       
-    
+
     @property
     def nome(self):
         return self.__nome
@@ -24,7 +24,7 @@ class Arquivo:
     @property
     def tipo(self):
         return self.__tipo
-    
+
     @tipo.setter
     def tipo(self, tipo):
         self.__tipo = tipo
@@ -32,15 +32,15 @@ class Arquivo:
     @property
     def descricao(self):
         return self.__descricao
-    
+
     @descricao.setter
     def descricao(self, descricao):
         self.__descricao = descricao
 
-    @property 
+    @property
     def tamanho(self):
         return self.__tamanho
-    
+
     @tamanho.setter
     def tamanho(self, tamanho):
         self.__tamanho = tamanho
@@ -52,7 +52,7 @@ class Arquivo:
     @conteudo.setter
     def conteudo(self, conteudo):
         self.__conteudo = conteudo
-        
+
     @property
     def criacao(self):
         return self.__criacao
@@ -61,8 +61,7 @@ class Arquivo:
     def criacao(self, criacao):
         self.__criacao = criacao
 
-    
-    @property 
+    @property
     def diretorio(self):
         return self.__diretorio
 
