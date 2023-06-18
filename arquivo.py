@@ -52,6 +52,14 @@ class Arquivo:
     @conteudo.setter
     def conteudo(self, conteudo):
         self.__conteudo = conteudo
+        
+    @property
+    def criacao(self):
+        return self.__criacao
+
+    @criacao.setter
+    def criacao(self, criacao):
+        self.__criacao = criacao
 
     
     @property 
