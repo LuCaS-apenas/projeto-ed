@@ -72,10 +72,6 @@ class No:
     def adicionar_arquivo(self, arquivo):
         self.lista_arquivos.inserir_no_inicio(arquivo)
 
-    # falta verificar!
-
-
-
     def imprimir(self, indent = 0):
 
         print(" - " * indent + f"{self.carga}")
@@ -209,14 +205,19 @@ class SistemaDeArquivos:
         chave = input('Escolha uma chave: ')
 
         key = self.gerar_chave_criptografia(chave)
-        
+
+        # ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' #
+
+        # ESTÁ FALTANDO IMPLEMENTAR UMA LÓGICA PARA SE O DIRETORIO NÃO EXISTIR, SER CRIADO E INSERIDO NA RAIZ DOS DIRETORIOS.
+
+        # ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''' #
         self.key = key.chave # varíavel vai ser utilizada pra decifrar o conteúdo do arquivo.
-        
+
         # É pego o conteúdo do arquivo e usado a biblioteca para cryptografar, passando como parâmetro a mensagem
         # que irá ser criptografada e uma chave.
         arquivo.conteudo = cryptocode.encrypt(arquivo.conteudo, key.chave)
         diretorio.adicionar_arquivo(arquivo)
-  
+
 
     def listar_arquivos(self, pesquisa_diretorio: str):
         pass
@@ -230,17 +231,6 @@ class SistemaDeArquivos:
 
 if __name__ == '__main__':
 
-    # def criar_arquivo(self):
-    #     with open ( f'{self.nome}.txt', 'a' ) as arquivo:
-    #         arquivo.write (f'senha:{self.conteudo}')
-
-
-    #
-    # def criar_arquivo(x):
-    #     with open ( f"arquivo_criptografado.txt", 'a' ) as arquivo:
-    #         arquivo.write (str (x) )
-    #
-    # criar_arquivo(a)
     print('--------------------------DIRETORIOS------------------------------')
 
     diretorio = Diretorio('Diretorio Home')
