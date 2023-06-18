@@ -5,6 +5,12 @@ import sys
 from Lista import *
 from Arvore import *
 
+class DiretorioError(Exception):
+    pass
+
+class ArquivoError(Exception):
+    pass
+
 class Diretorio:
 
     def __init__(self, nome: str):
@@ -54,7 +60,7 @@ class ChaveCriptografia:
 ## Árvore Binária
 class No:
 
-    def __init__(self, carga: object = None, esquerda: 'No' = None, direita: 'No' = None):
+    def __init__(self, carga: Diretorio = None, esquerda: 'No' = None, direita: 'No' = None):
         self.carga = carga
         self.esquerda = esquerda
         self.direita = direita
@@ -63,6 +69,9 @@ class No:
 
     def adicionar_arquivo(self, arquivo):
         self.lista_arquivos.inserir_no_inicio(arquivo)
+
+    # falta verificar!
+
 
     def imprimir(self, indent = 0):
 
@@ -143,8 +152,8 @@ class SistemaDeArquivos:
 
     def listar_diretorios(self, diretorio: Diretorio = None):
 
-        # se o nó inicial for None, vai imprimir todos os nós da árvore recursivamente.
-        # caso algum nó seja passado como parâmetro, a impressão da árvore vai partir desse ponto da árvore.
+        # Se o nó inicial for None, vai imprimir todos os nós da árvore recursivamente.
+        # Caso algum nó seja passado como parâmetro, a impressão da árvore vai partir desse ponto da árvore.
 
         if diretorio is None:
             diretorio = self.raiz # diretorio vai ser o ponto inicial da impressão da árvore, no caso vai imprimir tudo a partir do novo nó, cada nó é um diretorio diferente.
@@ -152,8 +161,25 @@ class SistemaDeArquivos:
 
 
 
-    def gravar_arquivo_cifrado(self, diretorio: Diretorio, arquivo: Arquivo):
-        pass
+    def gravar_arquivo_cifrado(self, diretorio: No, arquivo: Arquivo):
+
+        if not isinstance(diretorio, No):
+            raise('Precisa fornecer um No valido!')
+
+        # if not isinstance((arquivo, Arquivo)):
+        #     raise('Precisa fornecer um objeto do tipo arquivo!')
+
+        # falto só implementar o método buscar arquivo
+        diretorio = self.raiz # buscar_diretorio(diretorio.nome)
+
+        if diretorio is None:
+            novo_diretorio = No(diretorio)
+            self.inserir(diretorio, self.raiz)
+            diretorio = novo_diretorio
+
+        arquivo.conteudo = cryptocode.encrypt(arquivo.conteudo, arquivo.diretorio)
+        diretorio.adicionar_arquivo(arquivo)
+
 
     def listar_arquivos(self, pesquisa_diretorio: str):
         pass
@@ -169,34 +195,11 @@ class SistemaDeArquivos:
 #     with open ( f'{self.nome}.txt', 'a' ) as arquivo:
 #         arquivo.write (f'senha:{self.conteudo}')
 
-# diretorio = Diretorio('Projeto')
-# diretorio1 = Diretorio('Teste')
-# diretorio2 = Diretorio('Mateus')
-# diretorio3 = Diretorio('Lucas')
-# diretorio4 = Diretorio('Ramon')
-
 a = SistemaDeArquivos(1)
 b = a.gerar_chave_criptografia('123')
 print(b)
 print(b.chave)
 
-conteudo_do_arquivo = 'Conteudo do arquivo'
-senha_criptografada = cryptocode.encrypt(conteudo_do_arquivo, b.chave)
-
-
-# a = Arquivo('A','txt','senhas', senha_criptografada, diretorio)
-# escolha_uma_senha1 = input('Senha: ')
-# senha_criptografada1 = cryptocode.encrypt(escolha_uma_senha1, chave)
-# a1 = Arquivo('B','txt','senhas', senha_criptografada1,diretorio1)
-# lista = ListaEncadeada()
-# lista.inserir_no_inicio(a)
-# lista.inserir_no_inicio(a1)
-# lista.imprime_lista()
-#
-#
-# print(cryptocode.decrypt(senha_criptografada,chave))
-# print(cryptocode.decrypt(senha_criptografada1,chave))
-#
 #
 # def criar_arquivo(x):
 #     with open ( f"arquivo_criptografado.txt", 'a' ) as arquivo:
@@ -228,11 +231,11 @@ a  = SistemaDeArquivos(diretorio_raiz)
 a.pre_ordem()
 
 
-a0 = Arquivo('Arquivo1','txt','senhas',senha_criptografada,subdiretorio1)
-a1 = Arquivo('Arquivo2','txt','senhas',senha_criptografada,subdiretorio1)
-a2 = Arquivo('Arquivo2','txt','senhas',senha_criptografada,subdiretorio2)
-a3 = Arquivo('Arquivo2','txt','senhas',senha_criptografada,subdiretorio3)
-a4 = Arquivo('Arquivo2','txt','senhas',senha_criptografada,subdiretorio3)
+a0 = Arquivo('Arquivo1','txt','senhas','1932932329',diretorio)
+a1 = Arquivo('Arquivo2','txt','senhas','jashdj2h13123',subdiretorio1)
+a2 = Arquivo('Arquivo2','txt','senhas','ughahe23u1412',subdiretorio2)
+a3 = Arquivo('Arquivo2','txt','senhas','kasjdkj12311',subdiretorio3)
+a4 = Arquivo('Arquivo2','txt','senhas','ashjdkahsudu213',subdiretorio3)
 
 
 
@@ -251,10 +254,10 @@ print('--------------------------------------------------------')
 # conjuntos de arquivos.
 # Em seguida foi modificado o método de imprimir da árvore, acrescentando
 # o método de listar em cada nó, assim imprimindo todos os arquivos contidos neles
-no2diretorio.adicionar_arquivo(a1)
-no2diretorio.esquerda.adicionar_arquivo(a2)
-no2diretorio.esquerda.adicionar_arquivo(a3)
-no2diretorio.direita.adicionar_arquivo(a4)
+# no2diretorio.adicionar_arquivo(a1)
+# no2diretorio.esquerda.adicionar_arquivo(a2)
+# no2diretorio.esquerda.adicionar_arquivo(a3)
+# no2diretorio.direita.adicionar_arquivo(a4)
 #---------------------------------------------------------#
 # teste listagem de diretorios
 # listando a partir de um diretorio específico
@@ -262,3 +265,10 @@ a.listar_diretorios(no2diretorio.direita)
 print('-----------------------------------------')
 # lista tudo é só fornecer o nó da árvore que faz referência o diretorio raiz
 a.listar_diretorios(diretorio_raiz)
+
+a.gravar_arquivo_cifrado(no2diretorio, a0)
+
+a.listar_diretorios(diretorio_raiz)
+
+#
+# print(a.buscar_diretorio())
