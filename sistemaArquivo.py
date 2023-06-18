@@ -1,6 +1,8 @@
 import datetime
 from chaveCriptografia import ChaveCriptografia
 from arquivo import *
+import cryptocode
+import sys
 
 RAIZ = "raiz"
 class SistemaDeArquivos:
