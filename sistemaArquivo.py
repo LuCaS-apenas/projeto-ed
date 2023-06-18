@@ -4,6 +4,38 @@ from arquivo import *
 import cryptocode
 import sys
 
+
+## Árvore Binária
+class No:
+
+    def __init__(self, carga: Diretorio = None, esquerda: 'No' = None, direita: 'No' = None):
+        self.carga = carga
+        self.esquerda = esquerda
+        self.direita = direita
+        self.altura = 1
+        self.lista_arquivos = ListaEncadeada()
+
+    def adicionar_arquivo(self, arquivo):
+        self.lista_arquivos.inserir_no_inicio(arquivo)
+
+    def imprimir(self, indent = 0):
+
+        print(" - " * indent + f"{self.carga}")
+
+
+        # vai imprimir a lista de arquivos em cada nó que são pastas ou diretorios
+        # quando o chamar o método de imprimir os nós, que no projeto vai ser diretórios
+        # toda vez que a informação de um nó for impresso vai ser listado os arquivos presentes neles.
+        self.lista_arquivos.imprime_lista() # modificação
+
+        if self.esquerda:
+            self.esquerda.imprimir(indent + 2)
+        if self.direita:
+            self.direita.imprimir(indent + 2)
+
+    def __str__(self):
+        return str(self.carga)
+
 RAIZ = "raiz"
 class SistemaDeArquivos:
 
