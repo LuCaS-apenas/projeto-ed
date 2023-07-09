@@ -25,15 +25,21 @@ class FileSystem:
                             description: str, content: str,
                             size: str, directory: Directory) -> File:
         
-        newFile = File(
+        if datetime.datetime.now () >= self.encryption_key.expiration:
+            print ( f"""
+        The password deadline has expired. Please update your password. 
+        System-Generated Password Suggestion: {self.senhas_sugeridas ()}
+        """ )
+
+        newFile = File (
             name,
-            type, 
-            description, 
-            cryptocode.encrypt(content, self.encryption_key.key), 
-            size, 
-            directory)
-        
-        directory.files.append(newFile)
+            type,
+            description,
+            cryptocode.encrypt ( content, self.encryption_key.key ),
+            size,
+            directory )
+
+        directory.files.append ( newFile )
 
     def list_files(self, directory: Directory) -> list:
         for i in (directory.files):
