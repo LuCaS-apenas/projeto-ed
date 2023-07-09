@@ -6,11 +6,6 @@ from fileSystem import *
 import cryptocode
 
 
-def add_dir(name):
-    new = Directory(name)
-    newDir = No(new)
-    return newDir
-
 
 
 
