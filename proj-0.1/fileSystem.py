@@ -36,7 +36,10 @@ class FileSystem:
         
     def generate_encryption_key(self, key: str) -> EncryptionKey:
         
-        if not isinstance(key, str):
+        if self.encryption_key not None:
+            print("The key already exist.")
+            return
+        elif not isinstance(key, str):
             print("The Encryption key must be a str")
             return
         self.encryption_key = EncryptionKey(key)
