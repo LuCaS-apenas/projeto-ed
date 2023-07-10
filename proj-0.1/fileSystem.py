@@ -21,12 +21,13 @@ class FileSystem:
                    |                                                          |
                    +------+------+-----+-----+-----+-----+-----+------+-------+
             
-                                                         
+
+            0. Generate encryption key                                             
             1. View File Structure
             2. Revoke Password
-            3. generate encryption key / Save Encrypted File
+            3. Save Encrypted File
             4. List Files
-            5. decrypt File
+            5. Decrypt File
             6. Search File
             10.Exit the program.
 
@@ -39,12 +40,15 @@ class FileSystem:
             print("The Encryption key must be a str")
             return
         self.encryption_key = EncryptionKey(key)
-        print("Encryption key generated sucessfuly.")
+        print("Encryption key generated successfully.")
     
     def revoke_encryption_key(self, key: str) -> bool : 
-        if self.encryption_key.key == key:
+        if self.encryption_key == None:
+            print("The key already no exist.")
+            return
+        elif self.encryption_key.key == key:
             self.encryption_key = None
-            print("Encryption key revoked sucessfuly.")
+            print("Encryption key revoked successfully.")
             return True
         else:
             print("Invalid Encryption key entered.")
@@ -84,6 +88,7 @@ class FileSystem:
             directory )
 
         directory.files.append ( newFile )
+        print("The file was created successfully.")
 
     def list_files(self, directory: Directory) -> list:
         for i in (directory.files):
