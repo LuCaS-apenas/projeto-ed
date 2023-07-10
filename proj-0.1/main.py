@@ -1,5 +1,5 @@
 from AVLTree import *
-from irectory import *
+from directory import *
 from encryptionKey import *
 from file import *
 from fileSystem import *
