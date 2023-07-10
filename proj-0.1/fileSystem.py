@@ -32,11 +32,16 @@ class FileSystem:
                             description: str, content: str,
                             size: str, directory: Directory) -> File:
         
+        if self.encryption_key == None:
+            print("The encryption key does not exist. Generate a new key to save a file.")
+            return
+
         if datetime.datetime.now () >= self.encryption_key.expiration:
             print ( f"""
         The password deadline has expired. Please update your password. 
         System-Generated Password Suggestion: {self.suggested_passwords ()}
         """ )
+            return
 
         newFile = File (
             name,
