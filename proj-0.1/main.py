@@ -76,8 +76,9 @@ if __name__ == '__main__':
     dirMedia.direita = dirFotos
     dirMedia.esquerda = dirVideos
 
+    #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
     arvore = ArvoreAVL ( dirRoot )
-
+    
     print ( fileSystem.menu () )
     key = input ( 'Choice Password: ' )
     fileSystem.generate_encryption_key ( key )
