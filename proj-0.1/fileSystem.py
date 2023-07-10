@@ -8,7 +8,31 @@ import random
 class FileSystem:
     def __init__(self) -> None:
         self.encryption_key = None
+        
+    def menu(self):
+        return f""" 
+    {'-=' * 50}
+                                       ENCRYPTED FILE SYSTEM
+                   +------+------+------+-----+------+-----+----+-----+-------+  
+                   |                                                          |
+                   +              ROOT     DOCS    MEDIA    TCC               +
+                   |                                                          |
+                   +                     FOTOS     VIDEOS                     +
+                   |                                                          |
+                   +------+------+-----+-----+-----+-----+-----+------+-------+
+            
+                                                         
+            1. View File Structure
+            2. Revoke Password
+            3. generate encryption key / Save Encrypted File
+            4. List Files
+            5. decrypt File
+            6. Search File
+            10.Sair do programa
 
+    {'-=' * 50}
+    """
+        
     def generate_encryption_key(self, key: str) -> EncryptionKey:
         
         if not isinstance(key, str):
