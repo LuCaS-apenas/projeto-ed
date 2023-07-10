@@ -1,5 +1,5 @@
 from AVLTree import *
-from diretory import *
+from directory import *
 from encryptionKey import *
 from file import *
 from fileSystem import *
@@ -76,25 +76,28 @@ if __name__ == '__main__':
     dirMedia.direita = dirFotos
     dirMedia.esquerda = dirVideos
 
-    #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
     arvore = ArvoreAVL ( dirRoot )
-    
+
     print ( fileSystem.menu () )
-    key = input ( 'Choice Password: ' )
-    fileSystem.generate_encryption_key ( key )
     while True:
 
         print ( fileSystem.menu () )
 
         option = input ( "Select an option: " )
 
-        if option == "1":
+        if option =="0":
+            key = input ( 'Choice Password: ' )
+            fileSystem.generate_encryption_key ( key )
+            time.sleep ( 1 )
+
+        elif option == "1":
             fileSystem.list_directories ( arvore )
             time.sleep ( 4 )
 
         elif option == '2':
             key = input ( 'Password: ' )
             fileSystem.revoke_encryption_key ( key )
+            time.sleep ( 1 )
 
         elif option == "3":
             arquive_name = input ( 'Arquive Name: ' )
@@ -117,7 +120,7 @@ if __name__ == '__main__':
                 fileSystem.save_encrypted_file ( arquive_name, t, description, size, content, media )
             else:
                 print ( 'Choose an existing directory!' )
-
+            time.sleep ( 1 )
         elif option == "4":
 
             directory = input ( ' Insert a directory: ' )
@@ -136,7 +139,7 @@ if __name__ == '__main__':
                 fileSystem.list_files ( media )
             else:
                 assert directory, 'Choose an existing directory!'
-
+            time.sleep ( 1 )
 
 
         elif option == "5":
@@ -159,11 +162,11 @@ if __name__ == '__main__':
                 fileSystem.decrypt_file ( media, Arquive )
             else:
                 assert directory, 'Choose an existing directory!'
-
+            time.sleep ( 1 )
         elif option == "6":
             key_word = input ( ' key_word: ' )
             fileSystem.search_file ( arvore, key_word )
-
+            time.sleep ( 1 )
         elif option == '10':
             print('                closing Program....')
             time.sleep(4)
