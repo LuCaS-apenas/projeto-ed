@@ -20,6 +20,13 @@ class FileSystem:
 
     def list_directories(self, tree: object) -> str:
         tree.pre_order()
+
+    def senha_sugerida(self):
+        senha = ''
+        for i in range ( 11 ):
+            i = random.choice ( '1234567890abcdefghijklmnoprstuvxz!@#$%' )
+            senha += i
+        print ( senha )
         
     def save_encrypted_file(self, name: str, type: str, 
                             description: str, content: str,
