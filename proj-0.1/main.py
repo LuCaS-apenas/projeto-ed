@@ -79,6 +79,8 @@ if __name__ == '__main__':
     arvore = ArvoreAVL ( dirRoot )
 
     print ( fileSystem.menu () )
+    key = input ( 'Choice Password: ' )
+    fileSystem.generate_encryption_key ( key )
     while True:
 
         print ( fileSystem.menu () )
@@ -94,8 +96,6 @@ if __name__ == '__main__':
             fileSystem.revoke_encryption_key ( key )
 
         elif option == "3":
-            key = input ( 'Choice Password: ' )
-            fileSystem.generate_encryption_key ( key )
             arquive_name = input ( 'Arquive Name: ' )
             t = input ( 'Arquive Type: ' )
             description = input ( 'Description: ' )
