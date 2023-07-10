@@ -28,7 +28,7 @@ class FileSystem:
             4. List Files
             5. decrypt File
             6. Search File
-            10.Sair do programa
+            10.Exit the program.
 
     {'-=' * 50}
     """
