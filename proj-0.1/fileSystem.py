@@ -2,6 +2,8 @@ from encryptionKey import *
 from file import *
 from directory import *
 import cryptocode
+import random
+
 
 class FileSystem:
     def __init__(self) -> None:
@@ -9,18 +11,24 @@ class FileSystem:
 
     def generate_encryption_key(self, key: str) -> EncryptionKey:
         
+        if not isinstance(key, str):
+            print("The Encryption key must be a str")
+            return
         self.encryption_key = EncryptionKey(key)
+        print("Encryption key generated sucessfuly.")
     
     def revoke_encryption_key(self, key: str) -> bool : 
-
-        assert (self.encryption_key != key), "Invalid Encryption key entred."
-
-        self.encryption_key = None
-        return True
+        if self.encryption_key.key == key:
+            self.encryption_key = None
+            print("Encryption key revoked sucessfuly.")
+            return True
+        else:
+            print("Invalid Encryption key entered.")
+            return
 
     def list_directories(self, tree: object) -> str:
         tree.pre_order()
-
+        
     def suggested_passwords(self):
         password = ''
         for i in range ( 11 ):
@@ -60,26 +68,28 @@ class FileSystem:
                 content: {i.content}""")
 
     def search_file(self, tree: object, key_word: str) -> list:
-        out = tree.pre_order_2(key_word)
-        print(out)
-        if out == None:
-            print(-1)
-            return
-        print(f"""
-                name: {str(out)}
-                content: {str(out.content)}""")
+        tree.pre_order_2(key_word)
+        # out = tree.pre_order_2(key_word)
+        # print(out)
+        # if out == None:
+        #     print(-1)
+        #     return
+        # print(f"""
+        #         name: {str(out)}
+        #         content: {str(out.content)}""")
 
-        
 
     def decrypt_file(self, directory: Directory, name: str) -> File:
-        
+    
         f = None
         
         for i in range(len(directory.files)):
             if directory.files[i].name == name:
                 f =  directory.files[i]
         
+        if f == None:
+            print("Directory or file does not exist.")
+            return
+    
         f.content = cryptocode.decrypt(str(f.content), self.encryption_key.key)
-        
         return
-       
