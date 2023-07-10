@@ -6,13 +6,6 @@ class No:
     self.direita = direita
     self.altura = 1
 
-  def imprimir(self, indent = 1):
-    print(" " * indent + str(self.carga))
-    if self.esquerda:
-      self.esquerda.imprimir(indent - 1)
-    if self.direita:
-      self.direita.imprimir(indent + 2)
-
   def __str__(self):
     return str(self.carga)
 
@@ -40,25 +33,8 @@ class ArvoreBinaria:
 
 class ArvoreAVL(ArvoreBinaria):
 
-  def buscar(self, chave, raiz=RAIZ):
-    if raiz == RAIZ:
-      raiz = self.raiz
-
-    if raiz is None:
-      return None
+  def pre_order_2(self, chave, no: 'No' = RAIZ):
     
-    for i in raiz.carga.files:
-     if i.name == chave:
-      return i 
-
-    # return self.pre_order_2(raiz)
-     if chave > raiz.carga.files[0].name:
-      return self.buscar(chave, raiz.direita)
-
-    return self.buscar(chave, raiz.esquerda) 
-
-  def pre_order_2(self, chave, no: 'No' = RAIZ, nivel = 0):
-      
     if no == RAIZ:
         no = self.raiz
     if no == None:
@@ -66,13 +42,15 @@ class ArvoreAVL(ArvoreBinaria):
 
     for i in no.carga.files:
       if i.name == chave:
-        print(i)
-        return i
-      
+        print(f"""
+                name: {str(i)}
+                content: {str(i.content)}""")
+
     if no.esquerda:
-        self.pre_order_2(chave, no.esquerda, nivel+1)
+        self.pre_order_2(chave, no.esquerda)
     if no.direita:
-        self.pre_order_2(chave, no.direita, nivel+1)
+        self.pre_order_2(chave, no.direita)
+
 
 
 
