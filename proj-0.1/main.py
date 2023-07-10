@@ -1,9 +1,10 @@
 from AVLTree import *
-from directory import *
+from diretory import *
 from encryptionKey import *
 from file import *
 from fileSystem import *
 import cryptocode
+import time
 
 fileSystem = FileSystem()
 fileSystem.generate_encryption_key("asdf")
@@ -78,10 +79,6 @@ if __name__ == '__main__':
     arvore = ArvoreAVL ( dirRoot )
 
     print ( fileSystem.menu () )
-
-    key = input ( 'Choice Password: ' )
-    fileSystem.generate_encryption_key ( key )
-
     while True:
 
         print ( fileSystem.menu () )
@@ -97,6 +94,8 @@ if __name__ == '__main__':
             fileSystem.revoke_encryption_key ( key )
 
         elif option == "3":
+            key = input ( 'Choice Password: ' )
+            fileSystem.generate_encryption_key ( key )
             arquive_name = input ( 'Arquive Name: ' )
             t = input ( 'Arquive Type: ' )
             description = input ( 'Description: ' )
@@ -116,7 +115,7 @@ if __name__ == '__main__':
             elif directory == 'media':
                 fileSystem.save_encrypted_file ( arquive_name, t, description, size, content, media )
             else:
-                print ( 'Selecione um diretório existente!' )
+                print ( 'Choose an existing directory!' )
 
         elif option == "4":
 
@@ -135,13 +134,13 @@ if __name__ == '__main__':
             elif directory == 'media':
                 fileSystem.list_files ( media )
             else:
-                assert directory, 'Escolha um diretório existente!'
+                assert directory, 'Choose an existing directory!'
 
 
 
         elif option == "5":
             directory = input ( 'Insert a directory: ' )
-            assert type ( directory ) == type ( directory ), 'Precisa ser do tipo diretório'
+            assert type ( directory ) == type ( directory ), 'It needs to be of type directory.'
             Arquive = input ( 'Enter a file name: ' )
 
 
@@ -158,13 +157,15 @@ if __name__ == '__main__':
             elif directory == 'media':
                 fileSystem.decrypt_file ( media, Arquive )
             else:
-                assert directory, 'Escolha um diretório existente!'
+                assert directory, 'Choose an existing directory!'
 
         elif option == "6":
             key_word = input ( ' key_word: ' )
             fileSystem.search_file ( arvore, key_word )
 
         elif option == '10':
+            print('                closing Program....')
+            time.sleep(4)
             break
 
         else:
