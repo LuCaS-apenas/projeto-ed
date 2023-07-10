@@ -21,12 +21,12 @@ class FileSystem:
     def list_directories(self, tree: object) -> str:
         tree.pre_order()
 
-    def senha_sugerida(self):
-        senha = ''
+    def suggested_passwords(self):
+        password = ''
         for i in range ( 11 ):
             i = random.choice ( '1234567890abcdefghijklmnoprstuvxz!@#$%' )
-            senha += i
-        print ( senha )
+            password += i
+        print ( password )
         
     def save_encrypted_file(self, name: str, type: str, 
                             description: str, content: str,
@@ -35,7 +35,7 @@ class FileSystem:
         if datetime.datetime.now () >= self.encryption_key.expiration:
             print ( f"""
         The password deadline has expired. Please update your password. 
-        System-Generated Password Suggestion: {self.senhas_sugeridas ()}
+        System-Generated Password Suggestion: {self.suggested_passwords ()}
         """ )
 
         newFile = File (
